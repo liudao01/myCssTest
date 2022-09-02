@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>文件层级展示页面</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="../commons/js/jquery/scripts/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../commons/css/awsui.css">
+	<script type="text/javascript" src="../commons/js/awsui.js"></script>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/com.actionsoft.apps.mydriver.loadFolderTree.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	   $(document).ready(function(){
+	   //	$('#folderLayerTree').css('overflow','hidden');
+	   });
+	</script>
+	<style type="text/css">
+	.ui-tree .root-file{
+	  height:20px;
+	  width:20px;
+	}
+	</style>
+</head>
+<body>
+<ul id='folderLayerTree' style="height:200px;overflow-y:auto;"></ul>
+<form action="./w" method=post id="frmMain" name="frmMain">
+	<#sid>
+</form>
+</body>
+</html>

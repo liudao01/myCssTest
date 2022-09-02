@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>create markdown file</title>
+<link rel="stylesheet" type="text/css" href="../commons/css/awsui.css">
+<link rel="stylesheet" type="text/css" href="../apps/com.actionsoft.apps.mydriver/lib/editormd/css/editormd.css" media="screen" />
+<style>
+ul>li{
+ list-style:disc;
+}
+ol>li{
+ list-style:decimal;
+}
+.floatleft{
+	float:left;
+}
+.filename-cls{
+height: 20px;
+line-height: 20px;
+width: 100%;
+border-top: none;
+border-left: none;
+border-right: none;
+margin-bottom: 10px;
+/*
+border-bottom: 1px solid #63abf7; 
+ */
+border-bottom: none;
+text-align: center;
+font-size:16px;
+outline: none;
+}
+#filecontent{
+	border-left:none;
+	border-right:none;
+}
+.editormd-toolbar-container{
+  padding:0 0px;
+}
+
+.editormd-preview-container{
+  padding:0px 20px 20px 20px !important;/*预览部分文字距离顶部有20px的处理*/
+}
+</style>
+<script type="text/javascript">
+		var sid = "<#sid>";
+		var fileId= '<#fileId>';
+		var fileName = "<#fileName>";
+		//var fileContent='';
+		var readOnly="<#readOnly>";
+		var language="<#language>";
+		var 文件标题 = "<I18N#文件标题>";
+		var 文件内容 = "<I18N#文件内容>";
+	</script>
+	
+</head>
+    <body style="overflow:hidden;">
+    	<input type="hidden" id="fileId" name='fileId' value='<#fileId>'/>
+    	<input type="text" id="mdFileName" name='mdFileName' class="filename-cls" placeholder='<I18N#文件标题>...' value="<#fileName>"/>
+        <div id="filecontent">
+            <textarea style="display:none;"  placeholder='<I18N#文件内容>...'><#fileContent></textarea>
+        </div>
+     <script type="text/javascript" src="../commons/js/jquery/scripts/jquery.js"></script>
+     <script type="text/javascript" src="../commons/js/awsui.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/editormd.js"></script>
+     <!-- 如果有使用flowchart和sequence-diagram才引用 -->   
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/raphael.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/underscore.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/sequence-diagram.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/flowchart.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/jquery.flowchart.min.js"></script>
+	 <!--
+	 <script src=".../apps/com.actionsoft.apps.mydriver/lib/editormd/languages/en.js"></script>
+	 <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/languages/zh-tw.js"></script>
+     -->
+        <script type="text/javascript">
+			var testEditor;
+
+            $(function() {
+		        var parentObj=parent.window.document.body;
+            	var win_h = $(parentObj).find("#id-awsui-win-frm-2013loadmarkdowndlgid").height()-100;
+            	var win_w = $(parentObj).find("#id-awsui-win-frm-2013loadmarkdowndlgid").width()-30;
+
+ 				var langStr="zh-cn";
+				if(language=="cn"){
+					langStr="zh-cn";
+				}else if(language=="big5"){
+					langStr="zh-tw";
+				}else if(language=="en"){
+					langStr="en";
+				}else{
+					langStr="zh-cn";
+				}
+
+
+            	 if(readOnly!=undefined && readOnly=="1"){ 
+		                testEditor = editormd("filecontent", {
+		                	//lang:langStr,
+		                	width   : win_w,
+		                    height  : win_h,
+		                    syncScrolling : "single",
+		                    toolbarIcons :'full',
+		                    emoji: true,
+		                    readOnly :true,
+		                    placeholder: 文件内容+"...",
+		                    autoFocus: false,
+		                    flowChart            : true,          // flowChart.js only support IE9+
+		                    sequenceDiagram      : true,  
+		                    path    : "../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/"
+		                    //,pluginPath :"../apps/com.actionsoft.apps.mydriver/lib/editormd/plugins/"
+		                });
+				 }else{
+				 	  testEditor = editormd("filecontent", {
+						   // lang:langStr,
+		                    width   : win_w,
+		                    height  : win_h,
+		                    syncScrolling : "single",
+		                    toolbarIcons :'full',
+		                    emoji: true,
+		                    placeholder: 文件内容+"...",
+		                    autoFocus: false,
+		                    flowChart            : true,          // flowChart.js only support IE9+
+		                    sequenceDiagram      : true,  
+		                    path    : "../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/"
+		                   //, pluginPath :"../apps/com.actionsoft.apps.mydriver/lib/editormd/plugins/"
+		                });
+				 }
+
+ 				var path  = "../apps/com.actionsoft.apps.mydriver/lib/editormd/languages/";
+				if (langStr != "zh-cn") {
+					editormd.loadScript(path + langStr, function() {
+						testEditor.lang = editormd.defaults.lang;
+						//console.log( editormd.defaults.lang);
+						// 只重建涉及语言包的部分，如工具栏、弹出对话框等
+						testEditor.recreate(testEditor.lang);
+					});
+				}
+
+            	 
+				  //testEditor.setMarkdown(fileContent);
+				  if(readOnly!=undefined && readOnly=="1"){ 
+                 	 $("#mdFileName").attr("readonly","true");
+				  }
+            	 
+				  $("#mdFileName").focus();
+            });
+            $(function(){
+                if(!!navigator.userAgent.match(/MSIE 8.0/) || !! navigator.userAgent.match(/MSIE 9.0/)){
+                        $('input[placeholder], textarea[placeholder]').each(function() {
+                            var input = $(this);
+                            if (input.val() === '' && input.attr("placeholder") !== ''){   
+                                input.addClass("placeholder").val(input.attr('placeholder'));
+                            }
+
+                            input.focus(function() {
+                                if (input.val() === input.attr('placeholder')) {
+                                    input.val('');
+                                }
+                            });
+
+                            input.blur(function() {
+                                if (input.val() === '' || input.val() === input.attr('placeholder')) {
+                                    input.val(input.attr('placeholder'));
+                                }
+                            });
+                        });
+                }
+            });
+			
+        </script>
+    </body>
+</html>

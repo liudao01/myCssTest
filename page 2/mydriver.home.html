@@ -1,0 +1,641 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>企业网盘</title>
+	
+	<!-- JQuery -->
+    <script type="text/javascript" src="../commons/js/jquery/scripts/jquery.js"></script>
+	<script type="text/javascript" src="../commons/js/jquery/scripts/jquery.textchange.js"></script>
+	<!--[if !IE 8]><!-->
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/lib/zeroclipboard/ZeroClipboard.js"></script>
+	<!--<![endif]-->
+	
+    <!-- AWS UI -->
+    <link rel="stylesheet" type="text/css" href="../commons/css/awsui.css">
+    <script type="text/javascript" src="../commons/js/awsui.js"></script>
+    <script type="text/javascript" src="../commons/js/jquery/scripts/ui/chart/aws.chart.js"></script>
+    
+    <script src="../commons/js/jquery/scripts/ui/reference/jquery-ui.js"></script>
+    
+	<link rel="stylesheet" type="text/css" href="../apps/com.actionsoft.apps.mydriver/lib/fancybox/fancybox.css" media="screen" />
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/lib/fancybox/fancybox.js"></script>
+
+	<script type="text/javascript" src="../commons/js/jquery/scripts/ui/awsui.pagination.js"></script>
+	<script type="text/javascript" src="../commons/js/jquery/scripts/ui/datepicker/aws.datepicker-zh-CN.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="../apps/com.actionsoft.apps.mydriver/css/mydriver.css">
+	
+	<script type="text/javascript" src="../commons/js/jquery/scripts/ui/at.js"></script>
+	<script type="text/javascript" src="../commons/js/jquery/scripts/ui/jscolor/jscolor.js"></script>
+	<script type="text/javascript" src="../commons/js/jquery/scripts/ui/aws.qrcode.js"/></script>
+	<script type="text/javascript">
+		var sid = "<#sid>";
+		var appId= '<#appId>';
+		var userid = "<#userId>";
+		var userPhoto = "<#userPhoto>";
+		var userName = "<#userName>";
+		var isAdmin='<#isAdmin>';
+		var singlefilesize='<#singlefilesize>';//上传单个文件大小限制
+		var limitUserCapacity='<#limitUserCapacity>';
+		var shareToMeFlag = "<#shareToMeFlag>";
+		var favoritecanuseflag="<#favoritecanuseflag>";
+		var networkcanuseflag="<#networkcanuseflag>";
+		var mailcanuseflag="<#mailcanuseflag>";
+		var backgroundcanuseflag="<#backgroundcanuseflag>";
+		var currentsumfilesize="<#currentUsedSize>";
+		var allcapacity="<#allSize>";
+		var currentUsedSize="<#currentUsedSize>";
+		var allSize="<#allSize>";
+		var mydriverUsedSize="<#mydriverUsedSize>";
+		var mydriverAllSize="<#mydriverAllSize>";
+		var isMyDriverAdmin="<#isMyDriverAdmin>";
+		var onlineFileFlag="<#onlineFileFlag>";
+		var defaultShareDate="<#defaultShareDate>";
+		var canPreviewType="<#canPreviewType>";
+		
+		var fileIdForShare="<#fileIdForShare>";
+		var fileTypeForShare="<#fileTypeForShare>";
+		var downFileUrl="<#downFileUrl>";
+		var downFileFlag="<#downFileFlag>";
+		var entfiletitle="<#entfiletitle>";
+		var entfiletitlei18n="<#entfiletitlei18n>";
+		var selffiletitle="<#selffiletitle>";
+		var selffiletitlei18n="<#selffiletitlei18n>";
+		var filelabelnum="<#filelabelnum>";
+		var commonlabelnum="<#commonlabelnum>";
+		var outerLinkFlag="<#outerLinkFlag>";
+		var templateId="<#templateId>";
+		var templateType="<#templateType>";
+		var supportOfficeType="<#supportOfficeType>";
+		var useTreeNavFlag="<#useTreeNavFlag>";
+		var language = "<#language>";
+		var entfileAcApplyToSub = "<#entfileAcApplyToSub>";
+		var entFilePermFlag = "<#entFilePermFlag>";
+
+	</script>
+	<script>
+		// 国际化
+		var 确定= "<I18N#确定>";
+		var 取消= "<I18N#取消>";
+		var 提示= "<I18N#提示>";
+		var 关闭= "<I18N#关闭>";
+
+		var 加载提示 = '<I18N#加载提示>';
+		var 容量统计 = '<I18N#容量统计>';
+		var 没有日志 = '<I18N#没有日志>';
+		var 其他 = '<I18N#其他>';
+		var 文档 = '<I18N#文档>';
+		var 图片 = '<I18N#图片>';
+		var 视频 = '<I18N#视频>';
+		var 音频 = '<I18N#音频>';
+		var 网盘日志 = '<I18N#网盘日志>';
+		var 管理员设置 = '<I18N#管理员设置>';
+		var 回收站= "<I18N#回收站>";
+		var 回收站不占用盘空间= "<I18N#回收站不占用盘空间>";
+		var 我的分享= "<I18N#我的分享>";
+		var 别人的分享= "<I18N#别人的分享>";
+		var 序号= "<I18N#序号>";
+		var 修改时间 = '<I18N#修改时间>';
+		var 文件名= "<I18N#文件名>";
+		var 大小= "<I18N#大小>";
+		var 删除时间= "<I18N#删除时间>";
+		var 用户名= "<I18N#用户名>";
+		var 属性= "<I18N#属性>";
+		var 分享人= "<I18N#分享人>";
+		var 分享时间= "<I18N#分享时间>";
+		var 用户= "<I18N#用户>";
+		var 操作人= "<I18N#操作人>";
+		var 操作时间= "<I18N#操作时间>";
+		var 操作类型= "<I18N#操作类型>";
+		var 操作对象= "<I18N#操作对象>";
+		var 描述= "<I18N#描述>";
+		var 排名= "<I18N#排名>";
+		var 文件总大小= "<I18N#文件总大小>";
+		var 部门= "<I18N#部门>";
+		var 文件夹名= "<I18N#文件夹名>";
+		var 网盘总容量统计= "<I18N#网盘总容量统计>";
+		var 已使用= "<I18N#已使用>";
+		var 剩余= "<I18N#剩余>";
+		var 用户总文件大小统计= "<I18N#用户总文件大小统计>";
+		var 网盘中使用量最大的前十个个人文件夹= "<I18N#网盘中使用量最大的前十个个人文件夹>";
+		var 网盘中使用量最大的前十个企业文件夹= "<I18N#网盘中使用量最大的前十个企业文件夹>";
+		var 加载提示= "<I18N#加载提示>";
+		var 个人文件总大小前十= "<I18N#个人文件总大小前十>";
+		var 个人文件夹使用量前十= "<I18N#个人文件夹使用量前十>";
+		var 企业文件夹使用量前十= "<I18N#企业文件夹使用量前十>";
+		var 类型= "<I18N#类型>";
+
+
+		var 上传= "<I18N#上传>";
+		var 新建文件夹= "<I18N#新建文件夹>";
+		var 重命名= "<I18N#重命名>";
+		var 移动= "<I18N#移动>";
+		var 移动到= "<I18N#移动到>";
+		var 删除= "<I18N#删除>";
+		var 彻底删除= "<I18N#彻底删除>";
+		var 还原= "<I18N#还原>";
+		var 同事分享= "<I18N#同事分享>";
+		var 取消分享= "<I18N#取消分享>";
+		var 下载= "<I18N#下载>";
+		var 清空回收站= "<I18N#清空回收站>";
+		var 全部还原= "<I18N#全部还原>";
+		var 修改= "<I18N#修改>";
+		var 添加标签= "<I18N#添加标签>";
+		var 收藏= "<I18N#收藏>";
+		var 取消收藏= "<I18N#取消收藏>";
+		var 评论文件= "<I18N#评论文件>";
+		var 查看文件= "<I18N#查看文件>";
+		var 查看= "<I18N#查看>";
+
+		var 删除评论= "<I18N#删除评论>";
+		var 设置所有者权限= "<I18N#设置所有者权限>";
+		var 链接分享= "<I18N#链接分享>";
+		var 工作网络分享= "<I18N#工作网络分享>";
+		var 新建文档= "<I18N#新建文档>";
+		var 修改文档= "<I18N#修改文档>";
+		var 设置查看者权限= "<I18N#设置查看者权限>";
+		var 访问时间= "<I18N#访问时间>";
+		var 访问ip = "<I18N#访问ip>";
+		var 下载文件 = "<I18N#下载文件>";
+		var 文件转换失败 = "<I18N#文件转换失败>";
+
+
+		var 当前目录统计= "<I18N#当前目录统计>";
+		var 按文件夹名搜索= "<I18N#按文件夹名搜索>";
+		var 搜索= "<I18N#搜索>";
+		var 重置= "<I18N#重置>";
+		var 新建Btn= "<I18N#新建Btn>";
+
+
+		var 确定要清空回收站吗="<I18N#确定要清空回收站吗>";
+		var 确定要全部还原回收站中文件或文件夹吗="<I18N#确定要全部还原回收站中文件或文件夹吗>";
+		var 空附件不允许上传="<I18N#空附件不允许上传>";
+		var 文件大小超出所限制的="<I18N#文件大小超出所限制的>";
+
+		var 分享="<I18N#分享>";
+		var 取消分享="<I18N#取消分享>";
+ 		var 复制链接和密码="<I18N#复制链接和密码>";
+		var 详细信息="<I18N#详细信息>";
+		var 没有文件="<I18N#没有文件>";
+		var 文件夹名字不允许为空="<I18N#文件夹名字不允许为空>";
+		var 文件夹名字不能包含="<I18N#文件夹名字不能包含>";
+		var 编辑文档="<I18N#编辑文档>";
+		var 加载更多="<I18N#加载更多>";
+		var 更多="<I18N#更多>";
+		var 新建成功="<I18N#新建成功>";
+		var 确认要把所选文件或文件夹彻底删除吗="<I18N#确认要把所选文件或文件夹彻底删除吗>";
+		var 彻底删除的文件或文件夹不可恢复="<I18N#彻底删除的文件或文件夹不可恢复>";
+		var 确认要把所选文件或文件夹放入回收站吗="<I18N#确认要把所选文件或文件夹放入回收站吗>";
+		var 删除的文件或文件夹可以在回收站还原="<I18N#删除的文件或文件夹可以在回收站还原>";
+
+		var 取消分享后该条分享记录将被删除确定要取消分享吗="<I18N#取消分享后该条分享记录将被删除确定要取消分享吗>";
+
+		var 确认要还原选中的文件或文件夹吗="<I18N#确认要还原选中的文件或文件夹吗>";
+		var 所选文件太大请选择单个文件进行下载="<I18N#所选文件太大请选择单个文件进行下载>";
+		var 取消分享成功="<I18N#取消分享成功>";
+		var 分享成功="<I18N#分享成功>";
+		var 选择文件="<I18N#选择文件>";
+
+		var 链接分享="<I18N#链接分享>";
+		var 超过有效期一个月的链接将被系统自动清除="<I18N#超过有效期一个月的链接将被系统自动清除>";
+		var 确定要还原该文件或文件夹吗="<I18N#确定要还原该文件或文件夹吗>";
+		var 彻底删除提示="<I18N#彻底删除提示>";
+		var 您的浏览器无法复制该链接请手动复制="<I18N#您的浏览器无法复制该链接请手动复制>";
+		var 复制成功="<I18N#复制成功>";
+		var 发送="<I18N#发送>";
+		var 不发送="<I18N#不发送>";
+		var 已选中="<I18N#已选中>";
+		var 个文件夹="<I18N#个文件夹>";
+		var 请选择用户="<I18N#请选择用户>";
+		var 选择用户="<I18N#选择用户>";
+		var 收藏成功="<I18N#收藏成功>";
+		var 取消收藏成功="<I18N#取消收藏成功>";
+
+
+		var 基本设置 = "<I18N#基本设置>";
+		var 文件可预览 = "<I18N#文件可预览>";
+		var 预览 = "<I18N#预览>";
+		var 新建在线文档 = "<I18N#新建在线文档>";
+		var 文件夹层级 = "<I18N#文件夹层级>";
+		var 文件标签个数限制 = "<I18N#文件标签个数限制>";
+		var 常用标签个数限制 = "<I18N#常用标签个数限制>";
+		var 单文件大小 = "<I18N#单文件大小>";
+		var 企业文件导航标题 = "<I18N#企业文件导航标题>";
+		var 个人文件导航标题 = "<I18N#个人文件导航标题>";
+		var 网盘管理员 = "<I18N#网盘管理员>";
+		var 容量设置 = "<I18N#容量设置>";
+		var 个人网盘总容量 = "<I18N#个人网盘总容量>";
+		var 个人文件夹容量 = "<I18N#个人文件夹容量>";
+		var 企业文件夹容量 = "<I18N#企业文件夹容量>";
+		var 网盘总容量 = "<I18N#网盘总容量>";
+		var 公开链接设置 = "<I18N#公开链接设置>";
+		var 创建公开链接 = "<I18N#创建公开链接>";
+		var 链接分享有效期 = "<I18N#链接分享有效期>";
+		var 导航栏背景色 = "<I18N#导航栏背景色>";
+		var 导航栏logo = "<I18N#导航栏logo>";
+		var 网盘总容量 = "<I18N#网盘总容量>";
+		var 导航栏文字 = "<I18N#导航栏文字>";
+		var 显示 = "<I18N#显示>";
+		var 不显示 = "<I18N#不显示>";
+		var 保存 = "<I18N#保存>";
+		var 保存Btn = "<I18N#保存Btn>";
+		var 邮件通知 = "<I18N#邮件通知>";
+		var 导航栏字体颜色 = "<I18N#导航栏字体颜色>";
+		var 设置模板 = "<I18N#设置模板>";
+		var 允许 = "<I18N#允许>";
+		var 不允许 = "<I18N#不允许>";
+		var 是 = "<I18N#是>";
+		var 否 = "<I18N#否>";
+		var 可以 = "<I18N#可以>";
+		var 不可以 = "<I18N#不可以>";
+		var 单位 = "<I18N#单位>";
+		var 天 = "<I18N#天>";
+		var 提取密码 = "<I18N#提取密码>";
+		var 点击复制 = "<I18N#点击复制>";
+		var 分享到同事圈 = "<I18N#分享到同事圈>";
+		var 请选择一个工作网络或者小组 = "<I18N#请选择一个工作网络或者小组>";
+		var 分享到同事圈 = "<I18N#分享到同事圈>";
+		var 分享成功 = "<I18N#分享成功>";
+		var 正在处理请稍侯 = "<I18N#正在处理请稍侯>";
+		var 删除成功 = "<I18N#删除成功>";
+		var 分享给同事 = "<I18N#分享给同事>";
+		var 分享到同事圈 = "<I18N#分享到同事圈>";
+		var 公开链接 = "<I18N#公开链接>";
+		var 设置btn = "<I18N#设置btn>";
+		var 创建链接 = "<I18N#创建链接>";
+
+
+		var 选择分享范围 = "<I18N#选择分享范围>";
+		var 添加 = "<I18N#添加>";
+		var 链接分享 = "<I18N#链接分享>";
+		var 二维码 = "<I18N#二维码>";
+		var 邮件 = "<I18N#邮件>";
+		var 输入邮箱进行共享 = "<I18N#输入邮箱进行共享>";
+		var 发送 = "<I18N#发送>";
+		var 有效日期 = "<I18N#有效日期>";
+		var 发送通知给我 = "<I18N#发送通知给我>";
+		var 文件链接 = "<I18N#文件链接>";
+		var 发送通知给我 = "<I18N#发送通知给我>";
+		var 有效日期 = "<I18N#有效日期>";
+		var 复制链接 = "<I18N#复制链接>";
+		var 正在发送 = "<I18N#正在发送>";
+		var 分享信息修改 = "<I18N#分享信息修改>";
+		var 修改成功 = "<I18N#修改成功>";
+		var 新建文件 = "<I18N#新建文件>";
+		var 请输入文件标题 = "<I18N#请输入文件标题>";
+		var 请填写文件内容 = "<I18N#请填写文件内容>";
+		var 内容 = "<I18N#内容>";
+		var 不允许为空 = "<I18N#不允许为空>";
+		var 修改人 = "<I18N#修改人>";
+		var 返回编辑页 = "<I18N#返回编辑页>";
+		var 历史修改记录 = "<I18N#历史修改记录>";
+		var 文件分享 = "<I18N#文件分享>";
+		var 文件标签 = "<I18N#文件标签>";
+		var 链接访问记录 = "<I18N#链接访问记录>";
+		var 基本信息 = "<I18N#基本信息>";
+		var 管理分享 = "<I18N#管理分享>";
+		var 日志 = "<I18N#日志>";
+		var 所属目录 = "<I18N#所属目录>";
+		var 文件名称 = "<I18N#文件名称>";
+		var 该目录已用 = "<I18N#该目录已用>";
+		var 文件夹容量 = "<I18N#文件夹容量>";
+		var 允许下载 = "<I18N#允许下载>";
+		var 允许预览 = "<I18N#允许预览>";
+		var 文件描述 = "<I18N#文件描述>";
+		var 根目录 = "<I18N#根目录>";
+		var 标签 = "<I18N#标签>";
+		var 创建时间 = "<I18N#创建时间>";
+		var 所有者 = "<I18N#所有者>";
+		var 查看者 = "<I18N#查看者>";
+		var 查看分享 = "<I18N#查看分享>";
+		var 查看历史记录 = "<I18N#查看历史记录>";
+		var 修改文件 = "<I18N#修改文件>";
+		var 文件修改 = "<I18N#文件修改>";
+		var 移动成功 = "<I18N#移动成功>";
+		var 文件夹的层级超出限制 = "<I18N#文件夹的层级超出限制>";
+		var 文件不允许下载 = "<I18N#文件不允许下载>";
+		var 访问记录 = "<I18N#访问记录>";
+		var 多个账号用分号隔开 = "<I18N#多个账号用分号隔开>";
+		var 重新生成预览 = "<I18N#重新生成预览>";
+		var 名称 = "<I18N#名称>";
+		var 发送失败 = "<I18N#发送失败>";
+		var 分享于 = "<I18N#分享于>";
+		var 有效期至 = "<I18N#有效期至>";
+		var 取消分享linkshare = "<I18N#取消分享linkshare>";
+		var 常用标签 = "<I18N#常用标签>";
+		var 所有标签 = "<I18N#所有标签>";
+
+		var 输入数据后敲回车试试 = "<I18N#输入数据后敲回车试试>";
+		var 最多 = "<I18N#最多>";
+		var 个 = "<I18N#个>";
+		var 操作成功 = "<I18N#操作成功>";
+		var 保存成功管理员设置刷新后生效是否刷新 = "<I18N#保存成功管理员设置刷新后生效是否刷新>";
+		var 请选择要移动到的目标文件夹 = "<I18N#请选择要移动到的目标文件夹>";
+		var 不能将文件移动到自身或其子文件夹下 = "<I18N#不能将文件移动到自身或其子文件夹下>";
+
+
+		var 您的网盘容量已经使用完毕 = "<I18N#您的网盘容量已经使用完毕>";
+		var 网盘总空间已经使用完毕 = "<I18N#网盘总空间已经使用完毕>";
+		var 请联系管理员 = "<I18N#请联系管理员>";
+		var 文件标签个数 = "<I18N#文件标签个数>";
+		var 常用标签个数 = "<I18N#常用标签个数>";
+		var 链接有效期 = "<I18N#链接有效期>";
+		var 授权 = "<I18N#授权>";
+		var 打开 = "<I18N#打开>";
+		var 创建成功 = "<I18N#创建成功>";
+		var 只有网盘管理员可以将文件移入企业文件夹根目录 = "<I18N#只有网盘管理员可以将文件移入企业文件夹根目录>";
+		var 标签个数的最高限制为 = "<I18N#标签个数的最高限制为>";
+		var 日期 = "<I18N#日期>";
+		var 删除标签 = "<I18N#删除标签>";
+		var 设置权限 = "<I18N#设置权限>";
+		var 权限应用到下级 = "<I18N#权限应用到下级>";
+		var 应用到下级 = "<I18N#应用到下级>";
+		var 追加 = "<I18N#追加>";
+		var 覆盖 = "<I18N#覆盖>";
+		var 取消 = "<I18N#取消>";
+
+
+
+
+
+	</script>
+	<style>
+	.state-active {
+		border: 1px solid #AAAAAA !important;
+		font-weight: normal !important;
+		color: #FFFFFF !important;
+		background: #0077CC !important;
+	}
+</style>
+</head>
+<body style='background-color: #FFF'>
+<div title="<I18N#查看分享>"   id="module-tree-dlg" style='display:none;'><div id="module-tree-dlg-content" style='padding-top:10px;height:400px;overflow:auto;'><div id="module-tree" style='width:100%;height:100%;'></div></div></div>
+<form action="./w" method="post" id="frmMain" name="frmMain">
+<div class="all-new-panel-cls">
+		<div class="new-dir-btn-cls"><span class="new-dir-icon-cls"></span><I18N#新建文件夹></div>
+		<div class="new-file-btn-cls upfile-cat" id="upfile-allfile" ><span class="new-file-icon-cls"></span><I18N#上传文件></div>
+		<div class="sep-hr"></div>
+		<div class="new-onlinefile-btn-cls"><span class="new-onlinefile-icon-cls"></span><I18N#新建在线文档></div>
+</div>
+<div  id="todo-layout" class='layout todo-layout'>
+	<div id="mydriver-layout-head" style="">
+	
+			 <div class="right-top">
+	         <span class='button all-new-cls'><I18N#新建Btn></span>
+		       <span id="link_path" class="span_dir_path"></span>
+		       <div class="switch-share-panel" style="display:none;">
+					<span class="switch-share-panel-item" id="sharemepanel"   vtype="0" ><I18N#别人的分享></span>
+					<span class="switch-share-panel-item" id="mysharepanel"   vtype="1" style='margin-left:1px;'><I18N#我的分享></span>
+		       </div>
+			   <div class="bar-view-group">
+					<span class="bar-view-group-item" id="barCmdViewSmall"   vtype="1" awsui-qtip="<I18N#平铺>"></span>
+					<span class="bar-view-group-item select" id="barCmdViewList"  vtype="0" awsui-qtip="<I18N#列表>"></span>
+		       </div>
+		       
+		       <ul id="tool-btn-group">
+							<li class="tool-btn-group-item tool-btn-cleanrecycle"   hidefocus="true" id="clean-recycle"    style='display:none'>
+								<div class="tool-btn-group-item-icon"></div>
+								<div class="tool-btn-group-item-desc"><I18N#清空回收站></div>
+							</li>
+							<li class="tool-btn-group-item tool-btn-restoreall"  hidefocus="true" id="restore-all"    style='display:none'>
+								<div class="tool-btn-group-item-icon"></div>
+								<div class="tool-btn-group-item-desc"><I18N#全部还原></div>
+							</li>
+				</ul>
+		       <div class="show-cap-btn"></div>
+		       <div class="show-search-btn"></div>
+		 </div>
+		 
+	</div>
+	<div id="mydriver-left" class="mydriver-left">
+		<div class="todo-navigate-group">
+			
+			<div class="eachnav">
+				<div class="todo-navigate-group-header show" id="catetoryCenter">
+				    <div class="file-icon"></div>
+					<span class="label navcolor-cls"><#selffiletitlei18n></span>
+					<span class="icon nav-arrow-img-up"></span>
+				</div>
+				<div  id='catetory-panel'  class="eachnav-panel">
+				<div class="todo-navigate-group-item current" i18nname="<I18N#全部>" name="allfile"><span><I18N#全部></span></div>
+				<#left-nav-catetory>
+				<div class="todo-navigate-group-item" i18nname="<I18N#其他>" name="otherfile"><span><I18N#其他></span></div>
+				</div>
+			</div>
+			
+			<div class="eachnav">
+				<div class="todo-navigate-group-header show" id="entCatetoryCenter">
+				    <div class="entfile-icon"></div>
+					<span class="label navcolor-cls"><#entfiletitlei18n></span>
+					<span class="icon nav-arrow-img-up"></span>
+				</div>
+				<div  id='ent-catetory-panel' class="eachnav-panel">
+				<div class="todo-navigate-group-item current" i18nname="<I18N#全部>" name="entallfile"><span><I18N#全部></span></div>
+				<#left-nav-ent-catetory>
+				<div class="todo-navigate-group-item" i18nname="<I18N#其他>"  name="entotherfile"><span><I18N#其他></span></div>
+				</div>
+			</div>
+			
+			<div class="eachnav">
+			    <div class="todo-navigate-group-header show" style='cursor:pointer;;' id="labelCenter">
+					<div class="filelabel-icon" title="<I18N#标签设置>"></div>
+					<span class="navcolor-cls filelabelnav"><I18N#常用标签></span>
+					<span class="icon nav-arrow-img-up filelabel-icon-up"></span>
+				</div>
+				<div  id='label-panel'  class="eachnav-panel">
+				<#left-nav-label>
+				</div>
+			</div>
+			
+			<div class="eachnav">
+				<div class="todo-navigate-group-header" id="shareCenter">
+				     <div class="sharefile-icon"></div>
+					<span class="label navcolor-cls"><I18N#分享中心></span>
+					<span class="icon nav-arrow-img-up"></span>
+				</div>
+				<div id='share-panel'  class="eachnav-panel">
+				<div class="todo-navigate-group-item" i18nname="<I18N#同事分享>" name="myshare"><span><I18N#同事分享></span></div>
+			    <div class="todo-navigate-group-item" i18nname="<I18N#链接分享>" name="linkshare"><span><I18N#链接分享></span></div>
+	
+				</div>
+			</div>
+			<div class="todo-navigate-group-item todo-navigate-group-header" name="recycle" style="height:40px;line-height:40px;">
+				<div class="recycle-icon"></div>
+				<span class="recyclenav navcolor-cls label" i18nname="<I18N#回收站>"><I18N#回收站></span>
+			</div>
+			
+			
+			
+			<div class="eachnav" id='mydriver-admin-panel'  style='display:none;'>
+					<div class="todo-navigate-group-header" id="adminCenter">
+						<div class="adminconfig-icon"></div>
+						<span class="label navcolor-cls"><I18N#管理员面板></span>
+						<span class="icon nav-arrow-img-up"></span>
+					</div>
+					<div id='admin-panel'  class="eachnav-panel">
+						<div class="todo-navigate-group-item" name="monitor" i18nname="<I18N#容量统计>"><span><I18N#容量统计></span></div>
+						<div class="todo-navigate-group-item" name="log"  i18nname="<I18N#网盘日志>"><span><I18N#网盘日志></span></div>
+						<div class="todo-navigate-group-item" name="adminconfig" i18nname="<I18N#管理员设置>" ><span><I18N#管理员设置></span></div>
+					</div>
+			</div>
+			<!--
+				<a　href="javascript:void(0);" onclick="showFileTree();" style="display: none;">文件树</a>
+			-->
+		</div>
+		<div class="left-set-panel" id="left-set-panel">
+		</div>
+	</div>
+	<div id="mydriver-left-tree" class="mydriver-left-tree">
+		<div id="left-nav-tree" class="left-nav-tree"></div>
+		<div class="left-set-panel" id="left-set-panel-1"></div>
+	</div>
+	
+	<div id="mydriver-layout-separater" style="width:-1px;"></div>
+	
+	
+	<div id="mydriver-right">
+	  <div class='todo-main-content-panel'>
+<!-- 		 <div class="right-top">
+		       <span id="link_path" class="span_dir_path"></span>
+		       <div class="switch-share-panel" style="display:none;">
+					<span class="switch-share-panel-item" id="sharemepanel"   vtype="0" >别人的分享</span>
+					<span class="switch-share-panel-item" id="mysharepanel"   vtype="1" style='margin-left:1px;'>我的分享</span>
+		       </div>
+			   <div class="bar-view-group">
+					<span class="bar-view-group-item" id="barCmdViewSmall"   vtype="1" awsui-qtip="平铺"></span>
+					<span class="bar-view-group-item select" id="barCmdViewList"  vtype="0" awsui-qtip="列表"></span>
+		       </div>
+		       
+		       <ul id="tool-btn-group">
+							<li class="tool-btn-group-item tool-btn-cleanrecycle"   hidefocus="true" id="clean-recycle"    style='display:none'>
+								<div class="tool-btn-group-item-icon"></div>
+								<div class="tool-btn-group-item-desc">清空回收站</div>
+							</li>
+							<li class="tool-btn-group-item tool-btn-restoreall"  hidefocus="true" id="restore-all"    style='display:none'>
+								<div class="tool-btn-group-item-icon"></div>
+								<div class="tool-btn-group-item-desc">全部还原</div>
+							</li>
+				</ul>
+		       <div class="show-cap-btn"></div>
+		       <div class="show-search-btn"></div>
+		 </div> -->
+					
+		    <div  class="right-center-main"> </div>
+		    <ul id="contextMenu" class="awsui-menu"></ul>
+		</div>
+	</div>
+	
+    <div   style="width:300px;display:none;" id="createfolder_dlg">
+		<input id="foldername" class="awsui-textbox" style="height:25px;" type="text"  maxlength="40"/>
+	</div>
+	
+	
+	<div   style="width:700px;display:none;" id="createmdfile_dlg">
+	</div>
+ 
+	
+	<input type="hidden" id="userId" name="userId" value="<#userId>"/>
+	<input type="hidden" id="currentDirId" name="currentDirId" value=""/>
+	<input type="hidden" id="size" name="size" value="<#size>"/> 
+	<input type="hidden" id="start" name="start" value=""/><!-- recordnum -->
+	<input type="hidden" id="begintime" name="begintime" value=""/> 
+	<input type="hidden" id="endtime" name="endtime" value=""/> 
+	<input type="hidden" id="sharefolderid" name="sharefolderid" value=""/> 
+
+</div>	
+</form>
+	<!-- 上传progress框  begin -->
+	<div class="box">
+		<div class='dlg_hd'><h4><I18N#上传状态></I18N></h4>  <h3><a href='javascript:void(0);' class='min zom'></a><a href='javascript:void(0);' class='upd-close'></a></h3></div>
+		<div class='progress_wrap'>
+			<div class="progress_header clearfix">
+				<div class='progress_title'><I18N#标题></I18N></div>
+				<div class='progress_size'><I18N#大小></I18N></div>
+				<div class='progress_loaded'><I18N#已上传></I18N></div>
+				<div class='progress_content'></div>
+		    </div>
+		</div>
+	</div>
+	<!-- 上传progress框  end -->
+	
+    <div id="show-cap-popbox" class="awsui-popbox"></div>
+    <div id="show-search-popbox" class="awsui-popbox"></div>
+	
+    <iframe src="" width="0px" height="0px" id="downfileIframe"></iframe>
+    
+    <!-- 修改文件信息dlg -->
+    <div title="<I18N#修改文件>"   id="file-modify-dlg" style='display:none;'>
+		 <div id="file-modify-dlg-content" style='padding-top:10px;height:350px;overflow-y:hidden;overflow-x:hidden;'>修改文件信息等 </div>
+    </div>
+    <!-- 文件标签dlg -->
+    <div title="<I18N#文件标签>"   id="file-label-dlg" style='display:none;'>
+		 <div id="file-label-dlg-content" style='padding-top:10px;height:350px;overflow-y:scroll;overflow-x:hidden;'>标签等 </div>
+    </div>
+    
+    <!-- 文件评论dlg -->
+    <div title="<I18N#文件评论>"   id="file-comment-dlg" style='display:none;'>
+		 <div id="file-comment-dlg-content" style='margin-top:10px;height:350px;overflow-y:scroll;overflow-x:hidden;'>评论等 </div>
+    </div>
+    
+     <!-- 修改分享dlg -->
+    <div title="<I18N#分享修改>"   id="file-shareupdate-dlg" style='display:none;'>
+		 <div id="file-shareupdate-dlg-content" style='margin-top:10px;height:auto;overflow:hidden;'>分享修改等</div>
+    </div>
+    <!-- 选择分享dlg -->
+    <div title="<I18N#选择分享类型>"   id="select-share-dlg" style='display:none;'>
+		 <div id="select-share-dlg-content" style='padding-top:10px;height:350px;overflow:hidden;'>修改文件信息等 </div>
+    </div>
+    <div title="<I18N#历史修改记录>"   id="msg-history-dlg" style='display:none;'><div id="msg-history-dlg-content" style='padding-top:10px;height:350px;overflow-x:hidden;overflow-y:auto;'><div id="msg-history-div"></div></div></div>
+    <div title="<I18N#链接访问记录>"   id="msg-access-dlg" style='display:none;'><div id="msg-access-dlg-content" style='padding-top:10px;height:350px;overflow-x:hidden;overflow-y:auto;'><div id="msg-history-div"></div></div></div>
+    
+    <form id="printForm" name="printForm" method="post" target="_blank" action="">
+		<input type="hidden" id="sid" name="sid" value="<#sid>"/> 
+		<input type="hidden" id="userId" name="userId" value="<#userId>"/>
+	</form>
+	<!-- 预览弹出层  begin -->
+	<div id="fullscreenWrap" style="filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#E5000000,endColorstr=#E5000000);">
+	       <div class="fullscreenpanel" id="fullscreenpanel"></div>
+			   <div class="fstoolbar onlinedoc_toolbar" id='fstoolbar'>
+			   	 <div class='toolbar-photo'>
+					<img id="filepre_back" src="../apps/com.actionsoft.apps.mydriver/img/filepreviewicon/pre_file_back.png">
+				</div>
+		      <div class='toolbar-title'></div>
+		      <div class="fsclosebtn" id="fsclosebtn"  awsui-qtip="<I18N#关闭>"></div>
+		      <div class="fsdownloadbtn" id="fsdownloadbtn"  awsui-qtip="<I18N#下载文件>"></div>
+		      <img class="fslistbtn" id="fslistbtn"  awsui-qtip="<I18N#列表>" src="../apps/com.actionsoft.apps.mydriver/img/filepreviewicon/pre_file_list.png" width="20" height="20"/>
+		      <img class="fslistbtn" id="fsrefreshbtn"  awsui-qtip="<I18N#重新生成预览>" src="../apps/com.actionsoft.apps.mydriver/img/filepreviewicon/pre_file_refresh.png" width="20" height="20"/>
+		     <!--  <div class="fsshowcommentbtn" id="fsshowcommentbtn"  awsui-qtip="显示评论"></div> -->
+		   </div>
+		   <div class="previewpanel" id="previewpanel" style='z-index:501;'>
+		   </div> 
+		   <div class="fsattrpanel" id="fsattrpanel" style="display:none;">
+		   <div id="fsreplypanel" style="overflow-y:scroll;height:100%;"></div>
+		  </div>  
+   </div>
+   <div id="show-fsdownload-popbox" class="awsui-popbox" style="z-index:999;">
+			<div id="online_file_source" class="source_file">
+				<img id="online_file_source_icon" alt="" src="../commons/img/fileSuffix/doc-32.png">
+				<a id="sourcedownloadurl"><span id="online_sourcefilename"></span><span id="sourceFileSize" style="color:#867e7e;float: right;"></span></a>
+			</div>
+			<div id="online_file_pdffile" class="pdf_file">
+				<img id="online_file_pdffile_icon" alt="" src="../commons/img/fileSuffix/pdf-32.png">
+				<a id="pdfdownloadurl"><span id="online_pdffilename"></span><span id="pdfFileSize" style="color:#867e7e;float: right;"></span></a>
+			</div>
+   </div>
+   <!-- 预览弹出层  end -->
+
+<div title="应用到下级"   id="applytosub-dlg" style="display:none;">
+	<div id="applytosub-dlg-content" style="padding-top: 10px; height: 50px; overflow:hidden;">
+
+	</div>
+</div>
+
+
+</body>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/mydriver.js"></script>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/mydriver.file.js"></script>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/mydriver.util.js"></script>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/mydriver.left.navtree.js"></script>
+    <script type="text/javascript" src="../commons/js/jquery/scripts/ui/chart/echarts-plain.js"></script>
+</html>

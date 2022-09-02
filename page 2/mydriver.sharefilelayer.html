@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>文件层级展示页面</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="../commons/js/jquery/scripts/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../commons/css/awsui.css">
+	<script type="text/javascript" src="../commons/js/awsui.js"></script>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/com.actionsoft.apps.mydriver.loadShareFileTree.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="../apps/com.actionsoft.apps.mydriver/lib/fancybox/fancybox.css" media="screen" />
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/lib/fancybox/fancybox.js"></script>
+		
+	<script type="text/javascript" charset="utf-8">
+	   $(document).ready(function(){
+	   	
+	   		
+		//图片预览  注册插件
+		$("a[rel=fancyboxgroup]").fancybox({
+			'transitionIn' : 'none','transitionOut' : 'none',		'titlePosition' : 'over',
+			'showNavArrows' : 'true',
+			'titleFormat' : function(title, currentArray, currentIndex, currentOpts) {
+				return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+			},
+			'onClosed':function(){ alert("close fun"); },
+			'onCleanup':function(){ alert("onCleanup fun"); }
+			
+		}); 
+	
+	   });
+	</script>
+	<style>
+	    .txt-text{
+	     display:inline-block;
+	     float:left;
+	     white-space: nowrap;
+	     text-overflow: ellipsis;
+	     height:20px;
+		}
+		.txt-op {
+			float: right;
+			color: #008bf5;
+			cursor: pointer;
+			width: 40px;
+    text-align: center;
+		}
+		
+		.ui-tree .root-file{
+		   width:20px;
+		}
+		
+		
+		
+		.tree-items-title {
+		   display:inline-block;
+		}
+		
+		.ui-tree .tree-items:hover{
+			/* background:#e0eeff; */
+			background:#ffffff;
+		}
+		.ui-tree .tree-items.current{
+			background:#ffffff ;
+		}
+		
+		.ui-tree .tree-items-title{
+		} 
+		.ui-tree .tree-items-title:hover{
+			background:#ffffff;
+		}
+		.ui-tree .tree-items-title.current{
+			background:#ffffff ;
+		}
+
+		.ui-tree .root-doc{
+		  vertical-align: top;
+          clear: none;
+		}
+	</style>
+</head>
+<body style="overflow:hidden;">
+<ul id='folderLayerTree' style='padding:10px 0px;height:380px;overflow:hidden;'></ul>
+<form action="./w" method=post id="frmMain" name="frmMain">
+	<#sid>
+</form>
+</body>
+</html>

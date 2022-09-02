@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>create markdown file</title>
+<link rel="stylesheet" type="text/css" href="../apps/com.actionsoft.apps.mydriver/lib/editormd/css/editormd.css" media="screen" />
+<style>
+#previeData {
+	width: 600px;
+	height: 100%;
+	background: #ffffff;
+	border: #888888;
+	box-shadow: 0px 1px 2px 0px #cccccc;
+	outline: none;
+	margin: 10px 0px;
+	padding: 10px 30px;
+}
+
+.editormd-preview-container, .editormd-html-preview{
+padding:0px 20px 0px 20px;}
+</style>
+<script type="text/javascript">
+		var sid = "<#sid>";
+		var fileId= '<#fileId>';
+		var fileName = "<#fileName>";
+</script>
+	
+</head>
+    <body style="margin:0px;padding:50px 0px;">
+     <div id="previePanel" style="background:#F6F7F2;"> 
+        <textarea id="previeData"  readonly style="height:95%;padding-bottom:20px;"><#fileContent></textarea>
+     </div>
+     <script type="text/javascript" src="../commons/js/jquery/scripts/jquery.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/editormd.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/marked.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/prettify.min.js"></script>
+     <!-- 如果有使用flowchart和sequence-diagram才引用 -->   
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/raphael.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/underscore.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/sequence-diagram.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/flowchart.min.js"></script>
+     <script src="../apps/com.actionsoft.apps.mydriver/lib/editormd/lib/jquery.flowchart.min.js"></script>
+     
+     
+     <script type="text/javascript">
+     var testEditormdView;
+     $(document).ready(function(){
+    	 var win_h = $(window).height();
+    	 $("#previePanel").css("height",(win_h-55)+"px");
+         var markdown=$("#previeData").text();
+         var testEditormdView = editormd.markdownToHTML("previePanel", {
+        	 gfm                  : true,
+             toc                  : true,
+             tocm                 : true,
+             tocStartLevel        : 1,
+             tocTitle             : "目录",
+             tocDropdown          : false,
+             tocContainer         : "",
+             markdown             : markdown,
+             markdownSourceCode   : false,
+             htmlDecode           : "style,script,iframe",
+             autoLoadKaTeX        : true,
+             pageBreak            : true,
+             atLink               : true,    // for @link
+             emailLink            : true,    // for mail address auto link
+             tex                  : false,
+             taskList             : false,   // Github Flavored Markdown task lists
+             emoji                : true,
+             flowChart            : true,
+             sequenceDiagram      : true,
+             previewCodeHighlight : true
+             });
+
+     });
+     
+        </script>
+    </body>
+</html>

@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<aws-actions>
+	<cmd-bean name="com.actionsoft.apps.mydriver_home">
+		<param name="sid" />
+		<param name="shareToMeFlag" />
+		<param name="downFileFlag" />
+		<param name="fileId" />
+		<param name="shareId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_loadfiledata">
+		<param name="sid" />
+		<param name="navType"/>
+		<param name="dirId"/>
+		<param name="searchValue"/>
+		<param name="orderCol"/>
+		<param name="orderType"/>
+		<param name="start"/>
+		<param name="size"/>
+		<param name="username"/>
+		<param name="opttype"/>
+		<param name="begintime"/>
+		<param name="endtime"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_adddir">
+		<param name="sid" />
+		<param name="parentDirId"/>
+		<param name="dirName"/>
+		<param name="isEnt"/>
+		<param name="folderCapacity"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_renamedirorfile">
+		<param name="sid" />
+		<param name="sourceId"/>
+		<param name="newName"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_movedirorfile">
+		<param name="sid" />
+		<param name="sourceId"/>
+		<param name="targetDirId"/>
+		<param name="isEnt"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_deletedirorfile">
+		<param name="sid" />
+		<param name="sourceIds"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_recoverdirorfile">
+		<param name="sid" />
+		<param name="sourceIds"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_deletethoroughdirorfile">
+		<param name="sid" />
+		<param name="sourceId"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_deletethoroughdirorfilecommon">
+		<param name="sid" />
+		<param name="sourceId"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_cleanrecycle">
+		<param name="sid" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_restoreall">
+		<param name="sid" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_addfile">
+		<param name="dirId" />
+		<param name="filename" />
+		<param name="filesize" />
+		<param name="oldname" />
+		<param name="timestr" />
+		<param name="isEnt" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getdownloadurl">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getfoldertreepage">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getfoldertreejson">
+		<param name="folderId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getchildfolders">
+		<param name="folderId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_copyfiles">
+		<param name="sourceIds"/>
+		<param name="targetDirId"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_zipfileanddir">
+		<param name="sid" />
+		<param name="sourceIds"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_sharedirorfile">
+		<param name="sid" />
+		<param name="sourceIds"/>
+		<param name="userids"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_cancelsharedirorfile">
+		<param name="sid" />
+		<param name="sourceIds"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getallfilesize">
+		<param name="sid" />
+		<param name="sourceIds"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getusertreepage">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getusertreejson">
+		<param name="userId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getusertreepageforlog">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_savetomydriver">
+		<param name="sid" />
+		<param name="sourceIds"/>
+		<param name="destDirid"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getfiletreepage">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getfiletreejson">
+		<param name="folderId" />
+	</cmd-bean>
+		<cmd-bean name="com.actionsoft.apps.mydriver_getsharefiletreepage">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getsharefiletreejson">
+		<param name="folderId" />
+		<param name="pid" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getnetworktreejson">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getnetworktreepage">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_loadmarkdownpage">
+		<param name="fileId" />
+		<param name="readOnly" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_createfile">
+		<param name="pid" />
+		<param name="fileName" />
+		<param name="timestr" />
+		<param name="fileContent" />
+		<param name="isEnt" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_updatefile">
+		<param name="pid" />
+		<param name="fileId" />
+		<param name="fileName" />
+		<param name="timestr" />
+		<param name="fileContent" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_addstream">
+		<param name="teamid" />
+		<param name="networkid" />
+		<param name="messageid" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_addfavorite">
+		<param name="dataId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_cancel_favorite">
+		<param name="dataId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_getfilebyid">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_gethistoryfilebyid">
+		<param name="historyId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_detailinfo">
+		<param name="fileId" />
+	</cmd-bean>
+    <cmd-bean name="com.actionsoft.apps.mydriver_get_file_history_data">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_link_share">
+		<param name="token" />
+		<param name="clientIp" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_share_file_bylink">
+		<param name="sourceIds"/>
+		<param name="sharePwd"/>
+		<param name="shareLink"/>
+		<param name="deadline"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_save_label">
+		<param name="sourceId"/>
+		<param name="labelName"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_save_user_label">
+		<param name="isCommon"/>
+		<param name="labelName"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_delete_label">
+		<param name="isCommon"/>
+		<param name="labelId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_delete_label_gl">
+		<param name="relationId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_user_labels">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_add_reply">
+		<param name="content" />
+		<param name="sourceId"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_delete_reply_by_id">
+		<param name="commentId"/>
+		<param name="sourceId"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_load_reply_list">
+		<param name="sourceId"/>
+		<param name="start"/>
+		<param name="size"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_admin_config">
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_save_admin_config">
+		<param name="capacity"/>
+		<param name="usercapacity"/>
+		<param name="userfoldercapacity"/>
+		<param name="entfoldercapacity"/>
+		<param name="filesize"/>
+		<param name="folderlevel"/>
+		<param name="previewflag"/>
+		<param name="mydriveradmin"/>
+		<param name="onlinefileflag"/>
+		<param name="sharedate"/>
+		<param name="entfiletitle"/>
+		<param name="selffiletitle"/>
+		<param name="filelabelnum"/>
+		<param name="commonlabelnum"/>
+		<param name="outerlinkflag"/>
+		<param name="showpbflag"/>
+		<param name="sharenavbgcolor"/>
+		<param name="sharenavfontcolor"/>
+		<param name="sharenavlogo"/>
+		<param name="sharenavtitle"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_charge_users_premit">
+		<param name="fileId"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_update_file_info">
+		<param name="fileId" />
+		<param name="fileDesc" />
+		<param name="folderCapacity"/>
+		<param name="canDownloadFlag"/>
+		<param name="canPreviewFlag"/>
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_file_log_data">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_file_sharelink_data">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_access_log_data">
+		<param name="shareId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_owner_aclist">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_viewer_aclist">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_share_aclist">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_preview_office_file">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_preview_office_file">
+		<param name="fileId" />
+		<param name="shareUserId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_getdownloadurl">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_preview_file_url">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_preview_file_url">
+		<param name="fileId" />
+		<param name="shareUserId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_preview_file_url_img">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_preview_file_url_img">
+		<param name="fileId" />
+		<param name="shareUserId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_update_share_info">
+		<param name="shareId" />
+		<param name="deadline" />
+		<param name="remindFlag" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_send_access_notification">
+		<param name="shareId" />
+		<param name="clientIp" />
+		<param name="logType" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_preview_md">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_downloadurl">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_get_share_flag">
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_validate_password">
+		<param name="shareId" />
+		<param name="inputPass" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_get_detailinfo">
+		<param name="fileId" />
+		<param name="shareUserId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_linkshare_loadfiledata">
+		<param name="sid" />
+		<param name="navType"/>
+		<param name="dirId"/>
+		<param name="searchValue"/>
+		<param name="orderCol"/>
+		<param name="orderType"/>
+		<param name="start"/>
+		<param name="size"/>
+		<param name="username"/>
+		<param name="opttype"/>
+		<param name="begintime"/>
+		<param name="endtime"/>
+		<param name="shareUserId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_send_mail">
+		<param name="mailAddress" />
+		<param name="shareId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_preview_file">
+		<param name="isCopy" />
+		<param name="fileId" />
+	</cmd-bean>
+	<cmd-bean name="com.actionsoft.apps.mydriver_load_nav_tree_json">
+		<param name="pid" />
+		<param name="nodetype" />
+		<param name="isdir" />
+		<param name="isEnt" />
+	</cmd-bean>
+    <cmd-bean name="com.actionsoft.apps.mydriver_load_cloud_tree_json">
+        <param name="dirId"/>
+    </cmd-bean>
+    <cmd-bean name="com.actionsoft.apps.mydriver_entfile_ac_applytosub">
+        <param name="fileId"/>
+        <param name="acType"/>
+        <param name="type"/>
+    </cmd-bean>
+	</aws-actions>

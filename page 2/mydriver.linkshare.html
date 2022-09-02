@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title><#fileName> - actionsoft</title>
+	<link rel="shortcut icon" type="image/ico" href="../favicon.ico"></link>
+	<!-- JQuery -->
+	<script type="text/javascript" src="../commons/js/jquery/scripts/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../commons/plug-in/bootstrap/css/bootstrap.css" />
+	<script type="text/javascript" src="../commons/plug-in/bootstrap/js/bootstrap.js"></script>
+	
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/lib/layer/layer.js"></script>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/mydriver.linkshare.js"></script>
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/js/mydriver.util.js"></script>
+	<link rel="stylesheet" type="text/css" href="../apps/com.actionsoft.apps.mydriver/css/mydriver.css">
+	<link rel="stylesheet" type="text/css"  href="../apps/com.actionsoft.apps.mydriver/css/mydriver.file.css" >
+	<link rel="stylesheet" type="text/css" href="../apps/com.actionsoft.apps.mydriver/lib/fancybox/fancybox.css" media="screen" />
+	<script type="text/javascript" src="../apps/com.actionsoft.apps.mydriver/lib/fancybox/fancybox.js"></script>
+
+<script type="text/javascript">
+		    var shareUserId="<#shareUserId>";
+		    var shareId="<#shareId>";
+		    var fileIdForShare="<#fileId>";
+		    var remindFlag="<#remindFlag>";
+		    var userPhotoForShare="<#userPhoto>";
+		    var userPhoto="<#userPhoto>";
+		    var canPreviewType="<#canPreviewType>";
+		    var sharenavbgcolor="<#sharenavbgcolor>";
+		    var sharenavlogo="<#sharenavlogo>";
+		    var sharenavtitle="<#sharenavtitle>";
+		    var sharenavfontcolor="<#sharenavfontcolor>";
+		    var showpbflag="<#showpbflag>";
+		    var supportOfficeType="<#supportOfficeType>";
+		    var mydriverdata=[<#mydriverdata>];
+		</script>
+<style>
+.unpreview-panel-text-type {
+	margin-top: -20px;
+}
+
+.unpreview-download-btn {
+	margin: 0 auto;
+	width: 340px;
+	color:#ffffff;
+	cursor:pointer;
+}
+
+.layui-layer-ico16, .layui-layer-loading .layui-layer-loading2{
+	width:auto;
+	color:#ffffff;
+	    padding-left: 50px;
+    padding-top: 7px;
+}
+.widget-header h3{
+ 	word-break: break-all;
+	word-wrap: break-word;
+}
+</style>
+</head>
+<body style="overflow: hidden;">
+<div class="linkshare-header clearfix">
+    <span class="linkshare-header-logo">
+        <img src="" width="90" align="center"  class="linkshare-header-logo-img">
+<!--         <img src="../apps/com.actionsoft.apps.mydriver/img/icon16.png" width="90" align="center"  class="linkshare-header-logo-img">
+ -->        <div class="linkshare-header-logo-text">ActionSoft</div>
+    </span>
+</div>
+
+	<div class="intro-header showpwdpanel">
+		<div class="container winners-widget">
+			<div class="row">
+				<div class="col col-xs-12 col-sm-12 col-md-12  col-lg-12" style="padding:0;">
+								<div class="widget-header">
+									<div class="icons">
+				                        <a target="_blank" ><img src="<#userPhoto>" data-toggle="tooltip" data-placement="top" title="" class="with-tooltip userinfo-portrait" data-original-title=""></a>
+				                    </div>
+									<h3> <#userName>给您分享了文件：<#fileName> </h3>
+								</div>
+								<div class="widget-body">
+									<div class="winner-row clearfix">
+										 <div class='show-share-file-panel'>
+										 	<form style="width:100%;height:100%;"  class="form-inline" role="form">
+										 	<div class="form-group">
+										 	  <h4 style="padding-bottom:10px;">请输入文件提取密码：</h4>
+							 			      <input type="text" class="form-control pwd-txt" id='sharepwdtxt' placeholder="请输入提取密码">
+							 				  <button type="button" class="btn btn-primary" id='sharePwdBtn'>提取文件 </button>
+	                                        </div>
+	  
+										   </form>
+									  </div>
+									</div>
+								</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="intro-header showfilepanel" style="display:none;">
+		<div class="container winners-widget">
+			<div class="row">
+				<div class="col col-md-12 col-sm-12 col-xs-12 col-lg-12"  style="padding:0;">
+                             <div class="widget-header">
+								<div class="icons">
+				                        <a target="_blank" ><img src="<#userPhoto>" data-toggle="tooltip" data-placement="top" title="" class="with-tooltip userinfo-portrait" data-original-title=""></a>
+			                    </div>
+								<h3> <#userName>给您分享了文件：<#fileName> </h3>
+							</div>
+							<div class='show-share-file-panel-list' style="background:#ffffff;">
+						 	<div class='preview-html-page'></div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- ------------------------------------ --> 
+    <!-- 预览弹出层  begin -->
+	<div id="fsouterpanel"  class="fsouterpanel" style='display:none;height:100%;width:100%;overflow:hidden;position:absolute;top:0px;'>
+	       <div class="fullscreenpanel" id="fullscreenpanel"></div>
+		   <div class="fstoolbar" id='fstoolbar'>
+		      <div class='toolbar-photo'>
+					<img id="filepre_back" src="../apps/com.actionsoft.apps.mydriver/img/filepreviewicon/pre_file_back.png">
+				</div>
+		      <div class='toolbar-title'></div>
+		      <div class="fsclosebtn" id="fsclosebtn"  awsui-qtip="关闭"></div>
+		      <div class="fsdownloadbtn" id="fsdownloadbtn"  awsui-qtip="下载文件"></div>
+		      <img class="fslistbtn" id="fslistbtn"  awsui-qtip="列表" src="../apps/com.actionsoft.apps.mydriver/img/filepreviewicon/pre_file_list.png" width='20' height='20'/>
+		      <img class="fslistbtn" id="fsrefreshbtn"  awsui-qtip="重新生成预览" src="../apps/com.actionsoft.apps.mydriver/img/filepreviewicon/pre_file_refresh.png" width="20" height="20"/>
+		   </div>
+		   <div class="previewpanel" id="previewpanel">
+		   </div> 
+		   <div class="fsattrpanel" id="fsattrpanel"  style="display:none;">
+		   <div id="fsreplypanel" style="overflow-y:scroll;height:100%;"></div>
+		  </div>  
+   </div>
+   <div class="linkshare-footer" style="display:none;">
+      <span style="display:inline-block;height:50px;line-height:50px;"> Powered By</span> <a href="http://www.awspaas.com/next" target="_blank" style="display:inline-block;height:50px;line-height:50px;">AWS PaaS</a>
+  </div>
+   <div id="show-fsdownload-popbox" class="awsui-popbox" style="z-index:999;display:none;">
+			<div id="online_file_source" class="source_file">
+				<img id="online_file_source_icon" alt="" src="../commons/img/fileSuffix/doc-32.png">
+				<a id="sourcedownloadurl"><span id="online_sourcefilename"></span><span id="sourceFileSize" style="color:#867e7e;float: right;"></span></a>
+			</div>
+			<div id="online_file_pdffile" class="pdf_file">
+				<img id="online_file_pdffile_icon" alt="" src="../commons/img/fileSuffix/pdf-32.png">
+				<a id="pdfdownloadurl"><span id="online_pdffilename"></span><span id="pdfFileSize" style="color:#867e7e;float: right;"></span></a>
+			</div>
+   </div>
+   <!-- 预览弹出层  end -->
+		
+		<input type="hidden" id="clientIp" name="clientIp" value="<#clientIp>"/>
+		<iframe   width="0px" height="0px" id="downfileIframe"></iframe>
+</body>
+
+
+</html>
